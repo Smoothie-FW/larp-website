@@ -7,6 +7,8 @@
   <meta property="og:image" content="https://losangelesroleplay.xyz/team1_leak.png">
   <meta property="og:url" content="https://losangelesroleplay.xyz">
   <meta name="theme-color" content="#FDF600">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <style>
     body {
       margin: 0;
@@ -14,15 +16,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       overflow: hidden;
+      font-family: Arial, sans-serif;
     }
 
     .container {
       position: relative;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 24px;
     }
 
     .glow {
@@ -40,6 +45,41 @@
       width: 90%;
       z-index: 1;
       border-radius: 10px;
+      display: block;
+    }
+
+    .discord-login {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 12px;
+      background: #5865F2;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(88, 101, 242, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .discord-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(88, 101, 242, 0.45);
+      opacity: 0.98;
+    }
+    .oauth-status {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      max-width: 700px;
+      line-height: 1.5;
+      margin-top: -6px;
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -47,6 +87,23 @@
   <div class="container">
     <div class="glow"></div>
     <img src="losrpp.png" alt="Los Angeles Roleplay">
+    <a
+      class="discord-login"
+      href="https://discord.com/oauth2/authorize?client_id=1387140747656167617&response_type=code&redirect_uri=https%3A%2F%2Flosangelesroleplay.xyz%2Fcallback.html&scope=identify%20guilds"
+    >
+      Log In With Discord
+    </a>
+    <div class="oauth-status" id="oauth-status"></div>
   </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+    const status = document.getElementById('oauth-status');
+
+    if (error && status) {
+      status.textContent = 'Discord login was cancelled or failed.';
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Discord Callback</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Discord Login Returned</h1>
+    <p id="msg">Processing...</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const error = params.get("error");
+
+    const msg = document.getElementById("msg");
+
+    if (error) {
+      msg.textContent = "Login failed or cancelled.";
+    } else if (code) {
+      msg.textContent = "Got Discord code: " + code;
+    } else {
+      msg.textContent = "No code received.";
+    }
+  </script>
+</body>
+</html>
