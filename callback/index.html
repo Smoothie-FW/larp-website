@@ -1,39 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Discord Callback</title>
   <style>
     body {
+      margin: 0;
+      min-height: 100vh;
       background: black;
       color: white;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       text-align: center;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .wrap {
+      max-width: 760px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 36px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+      opacity: 0.92;
+      word-break: break-word;
+    }
+
+    code {
+      color: #fdf600;
+      word-break: break-all;
     }
   </style>
 </head>
 <body>
-  <div>
+  <div class="wrap">
     <h1>Discord Login Returned</h1>
-    <p id="msg">Processing...</p>
+    <p id="msg">Checking Discord response...</p>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    const error = params.get("error");
-
-    const msg = document.getElementById("msg");
+    const code = params.get('code');
+    const error = params.get('error');
+    const msg = document.getElementById('msg');
 
     if (error) {
-      msg.textContent = "Login failed or cancelled.";
+      msg.textContent = 'Login failed or was cancelled.';
     } else if (code) {
-      msg.textContent = "Got Discord code: " + code;
+      msg.innerHTML = 'Got Discord authorization code: <code>' + code + '</code><br><br>This means the OAuth redirect worked. The next step is adding backend code to exchange this code for a Discord access token.';
     } else {
-      msg.textContent = "No code received.";
+      msg.textContent = 'No Discord authorization code was found.';
     }
   </script>
 </body>
