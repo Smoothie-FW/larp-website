@@ -2,8 +2,45 @@
 <html>
 <head>
   <title>Los Angeles Roleplay</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(253,246,0,0.6) 0%, rgba(253,246,0,0.3) 30%, rgba(253,246,0,0.1) 50%, transparent 70%);
+      filter: blur(60px);
+      z-index: 0;
+    }
+
+    img {
+      max-width: 600px;
+      width: 90%;
+      z-index: 1;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h1>The Event</h1>
+  <div class="container">
+    <div class="glow"></div>
+    <img src="team1_leak.jpeg" alt="Vehicle">
+  </div>
 </body>
 </html>
